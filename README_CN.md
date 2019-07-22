@@ -1,55 +1,55 @@
 
 
 # [spring-web](spring-web)
-    - [ConfigurableWebApplicationContext](spring-web/src/main/java/org/springframework/web/context/ConfigurableWebApplicationContext)
-    ```95
-    	void setConfigLocation(String configLocation);
-    ```
-    - [context](spring-web/src/main/java/org/springframework/web/context)
-        - [ContextLoader](spring-web/src/main/java/org/springframework/web/context/ContextLoader.java)
-        ```260
-        private static final String DEFAULT_STRATEGIES_PATH = "ContextLoader.properties";
-        public static final String CONFIG_LOCATION_PARAM = "contextConfigLocation";
+- [ConfigurableWebApplicationContext](spring-web/src/main/java/org/springframework/web/context/ConfigurableWebApplicationContext)
+```95
+	void setConfigLocation(String configLocation);
+```
+- [context](spring-web/src/main/java/org/springframework/web/context)
+	- [ContextLoader](spring-web/src/main/java/org/springframework/web/context/ContextLoader.java)
+	```260
+	private static final String DEFAULT_STRATEGIES_PATH = "ContextLoader.properties";
+	public static final String CONFIG_LOCATION_PARAM = "contextConfigLocation";
 
-        	public WebApplicationContext initWebApplicationContext(ServletContext servletContext) {
-			if (this.context == null) {
-				this.context = createWebApplicationContext(servletContext);
+		public WebApplicationContext initWebApplicationContext(ServletContext servletContext) {
+		if (this.context == null) {
+			this.context = createWebApplicationContext(servletContext);
+		}
+		...
+							configureAndRefreshWebApplicationContext(cwac, servletContext);
+		}
+		
+			protected void configureAndRefreshWebApplicationContext(ConfigurableWebApplicationContext wac, ServletContext sc) {
+				wac.setServletContext(sc);
+				String configLocationParam = sc.getInitParameter(CONFIG_LOCATION_PARAM);
+				if (configLocationParam != null) {
+					wac.setConfigLocation(configLocationParam);
+				}
+
 			}
-			...
-								configureAndRefreshWebApplicationContext(cwac, servletContext);
-        	}
-        	
-        		protected void configureAndRefreshWebApplicationContext(ConfigurableWebApplicationContext wac, ServletContext sc) {
-            		wac.setServletContext(sc);
-            		String configLocationParam = sc.getInitParameter(CONFIG_LOCATION_PARAM);
-            		if (configLocationParam != null) {
-            			wac.setConfigLocation(configLocationParam);
-            		}
-  
-            	}
-        ```
+	```
         
-        - [ContextLoaderListener extends ContextLoader](spring-web/src/main/java/org/springframework/web/context/ContextLoaderListener)
-        ```102
-        	public void contextInitialized(ServletContextEvent event) {
-        		initWebApplicationContext(event.getServletContext());
-        	}
-        ```
-        - [!ContextLoaderServlet] <!-- Log4jConfigServlet ContextLoaderPlugIn-->
-        - [XmlWebApplicationContext](spring-web/src/main/java/org/springframework/web/context/support/XmlWebApplicationContext.java)
-        ```
-        	protected String[] getDefaultConfigLocations() {
-        		if (getNamespace() != null) {
-        			return new String[] {DEFAULT_CONFIG_LOCATION_PREFIX + getNamespace() + DEFAULT_CONFIG_LOCATION_SUFFIX};
-        		}
-        		else {
-        			return new String[] {DEFAULT_CONFIG_LOCATION};
-        		}
-        	
-        ```
+- [ContextLoaderListener extends ContextLoader](spring-web/src/main/java/org/springframework/web/context/ContextLoaderListener)
+```102
+	public void contextInitialized(ServletContextEvent event) {
+		initWebApplicationContext(event.getServletContext());
+	}
+```
+- [ContextLoaderServlet] <!-- Log4jConfigServlet ContextLoaderPlugIn-->
+- [XmlWebApplicationContext](spring-web/src/main/java/org/springframework/web/context/support/XmlWebApplicationContext.java)
+```
+	protected String[] getDefaultConfigLocations() {
+		if (getNamespace() != null) {
+			return new String[] {DEFAULT_CONFIG_LOCATION_PREFIX + getNamespace() + DEFAULT_CONFIG_LOCATION_SUFFIX};
+		}
+		else {
+			return new String[] {DEFAULT_CONFIG_LOCATION};
+		}
+	
+```
 
 # [spring-webmvc](spring-webmvc)
-    - [web.xml](spring-webmvc/src/test/resources/org/springframework/web/context/WEB-INF/web.xml)
-    - [#ContextLoaderListener](#ContextLoaderListener)
-    - [#XmlWebApplicationContext](#XmlWebApplicationContext)
+- [web.xml](spring-webmvc/src/test/resources/org/springframework/web/context/WEB-INF/web.xml)
+- [#ContextLoaderListener](#ContextLoaderListener)
+- [#XmlWebApplicationContext](#XmlWebApplicationContext)
     
