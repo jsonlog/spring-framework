@@ -1,25 +1,41 @@
 # [DocTree][DocTree]
+- [@Deprecated][Deprecated]
 - [@Documented][Documented]
 - [@Inherited][Inherited] 继承父类注解
 - [@Retention(RetentionPolicy.RUNTIME)][Retention]
 - [@Target(ElementType.ANNOTATION_TYPE)][Target]
 
-<!-- stereotype spring-core-->
+# [junit][junit]
+- [RunWith][RunWith] [@Inherited][Inherited]
+- [Test][Test]
+
+# [spring-boot-test][spring-boot-test]
+- [SpringBootTest][SpringBootTest] [@Inherited][Inherited]
+
+<!-- stereotype -->
+# [spring-core][spring-core]
 - [Component][Component]
 - [Controller][Controller] [@Component][Component]
 - [Repository][Repository] [@Component][Component]
 - [Service][Service] [@Component][Component]
 
 <!-- annotation spring-context -->
+# [spring-context][spring-context]
+- [Bean][Bean]
 - [Configuration][Configuration] [@Component][Component]
 - [Conditional][Conditional]
 - [ComponentScan][ComponentScan]
 - [Indexed][Indexed]
 - [Profile][Profile] [@Conditional(ProfileCondition.class)][Conditional]
 
+# [spring-test][spring-test]
+- [ContextConfiguration][ContextConfiguration] [@Inherited][Inherited]
+
 <!-- annotation spring-web-->
+# [spring-web][spring-web]
 - [GetMapping][GetMapping] [@RequestMapping(method = RequestMethod.GET)][RequestMapping]
 - [Mapping][Mapping]
+- [PathVariable][PathVariable]
 - [RequestMapping][RequestMapping]
 - [ResponseBody][ResponseBody]
 - [RestController][RestController] [Controller][Controller] [ResponseBody][ResponseBody]
@@ -30,10 +46,9 @@
  [ComponentScan(excludeFilters = { @Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
 		@Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) })][ComponentScan]
 - [ThymeleafProperties][ThymeleafProperties]
-```
-	public static final String DEFAULT_PREFIX = "classpath:/templates/";
-
-```
+    ```
+    public static final String DEFAULT_PREFIX = "classpath:/templates/";
+    ```
 
 # [spring-context][spring-context]
 
@@ -255,17 +270,26 @@
 - [web.xml][web.xml] ContextLoaderListener XmlWebApplicationContext
 
 
+[java]:https://github.com/jsonlog/jdkSample/blob/jdk8u/src/share/classes/
 [DocTree]:https://github.com/jsonlog/jdkSample/blob/jdk8u/src/share/classes/com/sun/source/doctree/DocTree.java
+[Deprecated]:https://github.com/jsonlog/jdkSample/blob/jdk8u/src/share/classes/java/lang/annotation/Deprecated.java
 [Documented]:https://github.com/jsonlog/jdkSample/blob/jdk8u/src/share/classes/java/lang/annotation/Documented.java
 [Inherited]:https://github.com/jsonlog/jdkSample/blob/jdk8u/src/share/classes/java/lang/annotation/Inherited.java
 [Retention]:https://github.com/jsonlog/jdkSample/blob/jdk8u/src/share/classes/java/lang/annotation/Retention.java
 [Target]:https://github.com/jsonlog/jdkSample/blob/jdk8u/src/share/classes/java/lang/annotation/Target.java
+
+[junit]:https://github.com/jsonlog/source/blob/master/junit/junit
+[RunWith]:https://github.com/jsonlog/source/blob/master/junit/junit/org/junit/runner/RunWith.java
+[Test]:https://github.com/jsonlog/source/blob/master/junit/junit/org/junit/Test.java
 
 [spring-beans]: spring-beans
 [BeanFactory]: spring-beans/src/main/java/org/springframework/beans/factory/BeanFactory.java
 
 [spring-boot]:https://github.com/jsonlog/spring-boot/blob/master/spring-boot-project/spring-boot
 [SpringBootConfiguration]:https://github.com/jsonlog/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/SpringBootConfiguration.java
+
+[spring-boot-test]:https://github.com/jsonlog/spring-boot/blob/master/spring-boot-project/spring-boot-test
+[SpringBootTest]:https://github.com/jsonlog/spring-boot/blob/master/spring-boot-project/spring-boot-test/src/main/java/org/springframework/boot/test/context/SpringBootTest.java
 
 [ConfigurationProperties]:https://github.com/jsonlog/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/context/properties/ConfigurationProperties.java
 [ConfigurationPropertiesScan]:https://github.com/jsonlog/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/context/properties/ConfigurationPropertiesScan.java
@@ -277,6 +301,7 @@
 [ThymeleafProperties]:https://github.com/jsonlog/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/thymeleaf/ThymeleafProperties.java
 
 [spring-context]: spring-context
+[Bean]:spring-context/src/main/java/org/springframework/context/annotation/Bean.java
 [Component]:spring-context/src/main/java/org/springframework/stereotype/Component.java
 [Controller]:spring-context/src/main/java/org/springframework/stereotype/Controller.java
 [Indexed]:spring-context/src/main/java/org/springframework/stereotype/Indexed.java
@@ -303,10 +328,15 @@
 [ResourceLoader]: spring-core/src/main/java/org/springframework/core/io/ResourceLoader.java
 [ClassUtils]: spring-core/src/main/java/org/springframework/util/ClassUtils.java
 
+[spring-test]: spring-test
+[ContextConfiguration]:spring-test/src/main/java/org/springframework/test/context/ContextConfiguration.java
+
 [spring-web]: spring-web
 [GetMapping]:spring-web/src/main/java/org/springframework/web/bind/annotation/GetMapping.java
 [Mapping]:spring-web/src/main/java/org/springframework/web/bind/annotation/Mapping.java
+[PathVariable]:/Users/log/push/spring-projects/spring-framework/spring-web/src/main/java/org/springframework/web/bind/annotation/PathVariable.java
 [RequestMapping]:spring-web/src/main/java/org/springframework/web/bind/annotation/RequestMapping.java
+[RequestParam]:spring-web/src/main/java/org/springframework/web/bind/annotation/RequestParam.java
 [RestController]:spring-web/src/main/java/org/springframework/web/bind/annotation/RestController.java
 [ResponseBody]:spring-web/src/main/java/org/springframework/web/bind/annotation/ResponseBody.java
 [context]: spring-web/src/main/java/org/springframework/web/context
