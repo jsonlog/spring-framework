@@ -1,6 +1,42 @@
+# [DocTree][DocTree]
+- [@Documented][Documented]
+- [@Inherited][Inherited] 继承父类注解
+- [@Retention(RetentionPolicy.RUNTIME)][Retention]
+- [@Target(ElementType.ANNOTATION_TYPE)][Target]
 
+<!-- stereotype spring-core-->
+- [Component][Component]
+- [Controller][Controller] [@Component][Component]
+- [Repository][Repository] [@Component][Component]
+- [Service][Service] [@Component][Component]
+
+<!-- annotation spring-context -->
+- [Configuration][Configuration] [@Component][Component]
+- [Conditional][Conditional]
+- [ComponentScan][ComponentScan]
+- [Indexed][Indexed]
+- [Profile][Profile] [@Conditional(ProfileCondition.class)][Conditional]
+
+<!-- annotation spring-web-->
+- [GetMapping][GetMapping] [@RequestMapping(method = RequestMethod.GET)][RequestMapping]
+- [Mapping][Mapping]
+- [RequestMapping][RequestMapping]
+- [ResponseBody][ResponseBody]
+- [RestController][RestController] [Controller][Controller] [ResponseBody][ResponseBody]
+
+
+# [spring-boot][spring-boot]
+- [SpringBootApplication][SpringBootApplication] [SpringBootConfiguration][SpringBootConfiguration] [EnableAutoConfiguration][EnableAutoConfiguration] [ConfigurationPropertiesScan][ConfigurationPropertiesScan]
+ [ComponentScan(excludeFilters = { @Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
+		@Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) })][ComponentScan]
+- [ThymeleafProperties][ThymeleafProperties]
+```
+	public static final String DEFAULT_PREFIX = "classpath:/templates/";
+
+```
 
 # [spring-context][spring-context]
+
 - [ApplicationContext][ApplicationContext]
     ```
 	public interface ApplicationContext extends EnvironmentCapable, ListableBeanFactory, HierarchicalBeanFactory,
@@ -201,19 +237,66 @@
 		wac.refresh();
 	}
     ```
+- [AbstractAnnotationConfigDispatcherServletInitializer][AbstractAnnotationConfigDispatcherServletInitializer]
+    ```
+    //ContextLoaderListener
+	protected Class<?>[] getRootConfigClasses() {
+		<!-- return new Class[] { RootConfig.class }; -->
+	}
+    //DispatcherServlet
+	protected Class<?>[] getServletConfigClasses() {
+		<!-- return new Class[] { WebMvcConfig.class }; -->
+	}
+
+	protected String[] getServletMappings() {
+		<!-- return new String[] { "/" }; -->
+	}
+    ```
 - [web.xml][web.xml] ContextLoaderListener XmlWebApplicationContext
 
 
+[DocTree]:https://github.com/jsonlog/jdkSample/blob/jdk8u/src/share/classes/com/sun/source/doctree/DocTree.java
+[Documented]:https://github.com/jsonlog/jdkSample/blob/jdk8u/src/share/classes/java/lang/annotation/Documented.java
+[Inherited]:https://github.com/jsonlog/jdkSample/blob/jdk8u/src/share/classes/java/lang/annotation/Inherited.java
+[Retention]:https://github.com/jsonlog/jdkSample/blob/jdk8u/src/share/classes/java/lang/annotation/Retention.java
+[Target]:https://github.com/jsonlog/jdkSample/blob/jdk8u/src/share/classes/java/lang/annotation/Target.java
 
 [spring-beans]: spring-beans
 [BeanFactory]: spring-beans/src/main/java/org/springframework/beans/factory/BeanFactory.java
 
+[spring-boot]:https://github.com/jsonlog/spring-boot/blob/master/spring-boot-project/spring-boot
+[SpringBootConfiguration]:https://github.com/jsonlog/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/SpringBootConfiguration.java
+
+[ConfigurationProperties]:https://github.com/jsonlog/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/context/properties/ConfigurationProperties.java
+[ConfigurationPropertiesScan]:https://github.com/jsonlog/spring-boot/blob/master/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/context/properties/ConfigurationPropertiesScan.java
+
+[spring-boot-autoconfigure]:https://github.com/jsonlog/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure
+[EnableAutoConfiguration]:https://github.com/jsonlog/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/EnableAutoConfiguration.java
+[SpringBootApplication]:https://github.com/jsonlog/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/SpringBootApplication.java
+
+[ThymeleafProperties]:https://github.com/jsonlog/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/thymeleaf/ThymeleafProperties.java
+
 [spring-context]: spring-context
+[Component]:spring-context/src/main/java/org/springframework/stereotype/Component.java
+[Controller]:spring-context/src/main/java/org/springframework/stereotype/Controller.java
+[Indexed]:spring-context/src/main/java/org/springframework/stereotype/Indexed.java
+[Repository]:spring-context/src/main/java/org/springframework/stereotype/Repository.java
+[Service]:spring-context/src/main/java/org/springframework/stereotype/Service.java
 [ApplicationContext]: spring-context/src/main/java/org/springframework/context/ApplicationContext.java
+
+[AnnotationConfigUtils]:spring-context/src/main/java/org/springframework/context/annotation/AnnotationConfigUtils.java
+[ClassPathBeanDefinitionScanner]:spring-context/src/main/java/org/springframework/context/annotation/ClassPathBeanDefinitionScanner.java
+[ComponentScan]:spring-context/src/main/java/org/springframework/context/annotation/ComponentScan.java
+[Conditional]:spring-context/src/main/java/org/springframework/context/annotation/Conditional.java
+[Configuration]:spring-context/src/main/java/org/springframework/context/annotation/Configuration.java
+[Profile]:spring-context/src/main/java/org/springframework/context/annotation/Profile.java
+
 [AbstractApplicationContext]: spring-context/src/main/java/org/springframework/context/support/AbstractApplicationContext.java
 [AbstractRefreshableApplicationContext]: spring-context/src/main/java/org/springframework/context/support/AbstractRefreshableApplicationContext.java
 [AbstractRefreshableConfigApplicationContext]: spring-context/src/main/java/org/springframework/context/support/AbstractRefreshableConfigApplicationContext.java
 [AbstractXmlApplicationContext]: spring-context/src/main/java/org/springframework/context/support/AbstractXmlApplicationContext.java
+
+[spring-context.xsd]:spring-context/src/main/resources/org/springframework/context/config/spring-context.xsd
 
 [spring-core]: spring-core
 [DefaultResourceLoader]: spring-core/src/main/java/org/springframework/core/io/DefaultResourceLoader.java
@@ -221,6 +304,11 @@
 [ClassUtils]: spring-core/src/main/java/org/springframework/util/ClassUtils.java
 
 [spring-web]: spring-web
+[GetMapping]:spring-web/src/main/java/org/springframework/web/bind/annotation/GetMapping.java
+[Mapping]:spring-web/src/main/java/org/springframework/web/bind/annotation/Mapping.java
+[RequestMapping]:spring-web/src/main/java/org/springframework/web/bind/annotation/RequestMapping.java
+[RestController]:spring-web/src/main/java/org/springframework/web/bind/annotation/RestController.java
+[ResponseBody]:spring-web/src/main/java/org/springframework/web/bind/annotation/ResponseBody.java
 [context]: spring-web/src/main/java/org/springframework/web/context
 [ConfigurableWebApplicationContext]: spring-web/src/main/java/org/springframework/web/context/ConfigurableWebApplicationContext.java
 [ContextLoader]: spring-web/src/main/java/org/springframework/web/context/ContextLoader.java
@@ -234,6 +322,8 @@
 [spring-webmvc]: spring-webmvc
 [DispatcherServlet]: spring-webmvc/src/main/java/org/springframework/web/servlet/DispatcherServlet.java
 [FrameworkServlet]: spring-webmvc/src/main/java/org/springframework/web/servlet/FrameworkServlet.java
+[AbstractAnnotationConfigDispatcherServletInitializer]:spring-webmvc/src/main/java/org/springframework/web/servlet/support/AbstractAnnotationConfigDispatcherServletInitializer.class
+
 [web.xml]: spring-webmvc/src/test/resources/org/springframework/web/context/WEB-INF/web.xml
 
 
