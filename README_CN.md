@@ -4,6 +4,7 @@
 - [@Inherited][Inherited] 继承父类注解
 - [@Retention(RetentionPolicy.RUNTIME)][Retention]
 - [@Target(ElementType.ANNOTATION_TYPE)][Target]
+- [@Entity][Entity]
 
 # [junit][junit]
 - [RunWith][RunWith] [@Inherited][Inherited]
@@ -277,6 +278,8 @@
 [Inherited]:https://github.com/jsonlog/jdkSample/blob/jdk8u/src/share/classes/java/lang/annotation/Inherited.java
 [Retention]:https://github.com/jsonlog/jdkSample/blob/jdk8u/src/share/classes/java/lang/annotation/Retention.java
 [Target]:https://github.com/jsonlog/jdkSample/blob/jdk8u/src/share/classes/java/lang/annotation/Target.java
+
+[Entity]:../../../source/blob/master/javax.persistence/javax.persistence-api/javax/persistence/Entity.java
 
 [junit]:https://github.com/jsonlog/source/blob/master/junit/junit
 [RunWith]:https://github.com/jsonlog/source/blob/master/junit/junit/org/junit/runner/RunWith.java
