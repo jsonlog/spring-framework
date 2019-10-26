@@ -279,11 +279,11 @@
 [Retention]:https://github.com/jsonlog/jdkSample/blob/jdk8u/src/share/classes/java/lang/annotation/Retention.java
 [Target]:https://github.com/jsonlog/jdkSample/blob/jdk8u/src/share/classes/java/lang/annotation/Target.java
 
-[Entity]:../../../source/blob/master/javax.persistence/javax.persistence-api/javax/persistence/Entity.java
+[Entity]:../../../source/blob/master/repository/javax/persistence/javax.persistence-api/2.2/javax.persistence-api-2.2-sources/javax/persistence/Entity.java
 
-[junit]:https://github.com/jsonlog/source/blob/master/junit/junit
-[RunWith]:https://github.com/jsonlog/source/blob/master/junit/junit/org/junit/runner/RunWith.java
-[Test]:https://github.com/jsonlog/source/blob/master/junit/junit/org/junit/Test.java
+[junit]:https://github.com/jsonlog/source/blob/master/repository/junit/junit/4.12/junit-4.12-sources/
+[RunWith]:https://github.com/jsonlog/source/blob/master/repository/junit/junit/4.12/junit-4.12-sources/org/junit/runner/RunWith.java
+[Test]:https://github.com/jsonlog/source/blob/master/repository/junit/junit/4.12/junit-4.12-sources/org/junit/Test.java
 
 [spring-beans]: spring-beans
 [BeanFactory]: spring-beans/src/main/java/org/springframework/beans/factory/BeanFactory.java
