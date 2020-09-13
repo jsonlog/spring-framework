@@ -194,6 +194,7 @@
         ```
 
 # [spring-webmvc][spring-webmvc]
+- [DispatcherServlet.properties][DispatcherServlet.properties]
 - [DispatcherServlet extends FrameworkServlet][DispatcherServlet]
 - [FrameworkServlet extends HttpServletBean implements ApplicationContextAware][FrameworkServlet]
     ```
@@ -354,6 +355,7 @@
 
 [spring-webmvc]: spring-webmvc
 [DispatcherServlet]: spring-webmvc/src/main/java/org/springframework/web/servlet/DispatcherServlet.java
+[DispatcherServlet.properties]: spring-webmvc/src/main/java/org/springframework/web/servlet/DispatcherServlet.properties
 [FrameworkServlet]: spring-webmvc/src/main/java/org/springframework/web/servlet/FrameworkServlet.java
 [AbstractAnnotationConfigDispatcherServletInitializer]:spring-webmvc/src/main/java/org/springframework/web/servlet/support/AbstractAnnotationConfigDispatcherServletInitializer.class
 
